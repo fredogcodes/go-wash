@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"go_carwash/config"
 	"go_carwash/database"
+	"go_carwash/store"
 	"net/http"
 
 	"github.com/golang-migrate/migrate/v4"
@@ -13,11 +14,12 @@ import (
 
 func main() {
 
-	config := config.LoadConfig()
-	fmt.Println(config.DBSOURCE)
+	config := config.LoadConfig(".")
 
 	db := database.NewDBConn(config)
-	fmt.Println(db)
+
+	store := store.NewStore(db)
+	fmt.Println("Database connection successful", store)
 
 	fmt.Println("Running migrations")
 	runDBMigration(config.MigrationPath, config.DBSOURCE)

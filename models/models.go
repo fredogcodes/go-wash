@@ -6,6 +6,7 @@ import (
 )
 
 type Users struct {
+	gorm.Model
 	ID        uuid.UUID `json:"id"`
 	FirtsName string    `json:"first_name"`
 	LastName  string    `json:"last_name"`

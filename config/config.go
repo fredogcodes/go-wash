@@ -17,7 +17,7 @@ type Env struct {
 	MigrationPath string `mapstructure:"MIGRATION_PATH"`
 }
 
-func LoadConfig() *Env {
+func LoadConfig(path string) *Env {
 	env := Env{}
 
 	viper.SetConfigFile(".env")
